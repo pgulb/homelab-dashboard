@@ -44,6 +44,10 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		resp := `
 		<style>
+		a {
+			color: inherit;
+			text-decoration: inherit;
+		}
 		th {
 			border: 1px dashed gray;
 			padding: 5px;
@@ -57,7 +61,7 @@ func main() {
 		}
 		body {
 			background-color: black;
-			color: green;
+			color: chartreuse;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -68,10 +72,12 @@ func main() {
 		<tr><th>Service name</th><th>LAN link</th><th>VPN link</th></tr>`
 		for _, v := range config.Entries {
 			resp = fmt.Sprintf(
-				"%s<tr><td>%s</td><td>%s</td><td>%s</td></tr>",
+				"%s<tr><td>%s</td><td><a href='%s'>%s</a></td><td><a href='%s'>%s</a></td></tr>",
 				resp,
 				v.Name,
 				v.Lan,
+				v.Lan,
+				v.Vpn,
 				v.Vpn,
 			)
 		}
