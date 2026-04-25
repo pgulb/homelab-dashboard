@@ -1,0 +1,7 @@
+entries:
+  - name: test
+    lan: test
+    vpn: test
+  - name: test2
+    lan: test2
+    vpn: test2
