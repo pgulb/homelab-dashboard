@@ -37,6 +37,11 @@ func getConfig() Config {
 	return config
 }
 
+func exitAfterWhile() {
+	time.Sleep(time.Millisecond)
+	os.Exit(0)
+}
+
 func main() {
 	log.Println("Starting dashboard...")
 	config := getConfig()
@@ -87,7 +92,18 @@ func main() {
 			resp,
 			"</table>",
 		)
-		w.Write([]byte(resp))
+		_, err := w.Write([]byte(resp))
+		if err != nil {
+			log.Println(err)
+		}
+	})
+	http.HandleFunc("/reload", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Will exit now!")
+		_, err := w.Write([]byte("restarting"))
+		if err != nil {
+			log.Println(err)
+		}
+		go exitAfterWhile() // this allows writing response and then exitting
 	})
 
 	s := &http.Server{
