@@ -58,6 +58,7 @@ func main() {
 		}
 		table {
 			border: 1px dashed green;
+			font-size: calc(20px + 1.5vw);
 		}
 		body {
 			background-color: black;
