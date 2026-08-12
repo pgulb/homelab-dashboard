@@ -35,8 +35,8 @@ Single-file app in `cmd/main.go` (~115 lines). Three components:
 
 ## CI/CD
 
-- **Dockerfile**: Multi-stage build (`golang:1.26.2-alpine3.23` → `scratch`). Binary is built in `/dist/dash`, then copied to scratch. Exposes port 9091.
-- **GitHub Actions** (`.github/workflows/docker-publish.yml`): On push to `main`, builds and pushes to `ghcr.io` with cosign signing. Uses Docker Buildx with GitHub Actions cache.
+- **Dockerfile**: Multi-stage build (`golang:1.26.2-alpine3.23` → `scratch`). Uses `--platform=$BUILDPLATFORM` and `ARG TARGETOS TARGETARCH` for cross-compilation. Buildx multi-arch builds produce amd64/arm64 images. Binary is built in `/dist/dash`, then copied to scratch. Exposes port 9091.
+- **GitHub Actions** (`.github/workflows/docker-publish.yml`): On push to `main`, builds and pushes multi-arch (linux/amd64, linux/arm64) to `ghcr.io` with cosign signing. Uses Docker Buildx with QEMU for cross-platform emulation and GitHub Actions cache.
 
 ## Config format
 

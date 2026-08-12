@@ -8,3 +8,7 @@ tasks:
   run:
     cmds:
       - go run ./cmd/
+  build:
+    desc: Build the Go binary locally
+    cmds:
+      - go build -o dist/dash ./cmd/
