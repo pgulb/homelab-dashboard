@@ -49,28 +49,53 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		resp := `
 		<style>
-		a {
-			color: inherit;
-			text-decoration: inherit;
-		}
-		th {
-			border: 1px dashed gray;
-			padding: 5px;
-		}
-		td {
-			border: 1px dashed gray;
-			padding: 5px;
-		}
-		table {
-			border: 1px dashed green;
-			font-size: calc(20px + 1.5vw);
-		}
+		* { box-sizing: border-box; margin: 0; padding: 0; }
 		body {
-			background-color: black;
-			color: chartreuse;
+			background: #0a0a0a;
+			color: #33ff33;
+			font-family: "Courier New", Courier, monospace;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			min-height: 100vh;
+			padding: 16px;
+		}
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			max-width: 900px;
+			font-size: clamp(14px, 2.5vw, 22px);
+			line-height: 1.5;
+			text-shadow: 0 0 6px #33ff3380;
+		}
+		th, td {
+			border: 1px solid #33ff3366;
+			padding: 10px 14px;
+			text-align: left;
+		}
+		th {
+			border-bottom: 2px solid #33ff33;
+			font-weight: bold;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			font-size: 0.8em;
+		}
+		tr:hover td {
+			background: #33ff3310;
+		}
+		a {
+			color: inherit;
+			text-decoration: none;
+			display: block;
+		}
+		a:hover {
+			text-decoration: underline;
+			text-shadow: 0 0 10px #33ff33;
+		}
+		@media (max-width: 600px) {
+			body { padding: 8px; align-items: flex-start; padding-top: 24px; }
+			th, td { padding: 8px 10px; }
+			th:nth-child(1), td:nth-child(1) { min-width: 0; }
 		}
 		</style>
 		
