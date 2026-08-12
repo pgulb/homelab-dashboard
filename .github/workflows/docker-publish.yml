@@ -40,7 +40,7 @@ jobs:
 
       # Set up QEMU for cross-platform emulation
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@49b3bc8e6b0514e5b17e1e9b8cf0e0b33e17f2a0 # v3.0.0
+        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
